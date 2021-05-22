@@ -40,6 +40,7 @@ code {
 button{
   font-weight: bold;
   font-size: 15px;
+  cursor:pointer;
   margin:10px;
   background-color: rgb(245, 245, 170);
   border:none;
