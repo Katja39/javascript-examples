@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import '../index.css';
+import '../App.css';
 import Task from './task';
+import AddTask from './addTask';
 
 
 export default class TaskList extends Component {
@@ -24,33 +25,63 @@ export default class TaskList extends Component {
         super();
         this.handleButtonClickFirst = this.handleButtonClickFirst.bind(this);
         this.handleButtonClickNext = this.handleButtonClickNext.bind(this);
+        this.handleDelete=this.handleDelete.bind(this);
+        this.handleSave=this.handleSave.bind(this);
     }
 
     render() {
-        const { currentPosition } = this.state;
+        const {currentPosition} = this.state;
         return (
             <React.Fragment>
                 <button onClick={() => this.handleButtonClickFirst()}>Erste</button>
                 <button onClick={() => this.handleButtonClickNext()} >Nächste</button>
+                <div class="numberOfTasks"><h4>Anzahl der Aufgaben: {this.state.tasks.length}</h4></div>
+                
                 <div class="row">
-                    {this.state.tasks.slice(currentPosition, currentPosition + 3).map(task => (<Task key={task.id} taskHeadline={task.subject} task={task.body} />))}
-                </div>
+                {this.state.tasks.length===0 && <div class="column"><h1>Keine Aufgaben</h1></div>}
+                    {this.state.tasks.slice(currentPosition, currentPosition + 3).map(task => (
+                    <Task 
+                    key={task.id}
+                    id={task.id}
+                    taskHeadline={task.subject}
+                    task={task.body}
+                    onDelete={this.handleDelete} />))}
+                    <AddTask
+                    onSave={this.handleSave}/></div>
             </React.Fragment>
 
         )
     }
+
     handleButtonClickFirst() {
         this.setState({ currentPosition: 0 })
-        console.log("Test")
     }
     handleButtonClickNext() {
         const { currentPosition } = this.state;
         var newPosition
-        if (currentPosition < this.state.tasks.length - 3) {
+        if (currentPosition < this.state.tasks.length-3) {
             newPosition = currentPosition + 1;
         } else {
             newPosition = 0;
         }
         this.setState({ currentPosition: newPosition })
+    }
+    handleDelete(taskID){
+            const tasks=this.state.tasks.filter(task=>task.id!==taskID);
+            this.setState({tasks});
+            
+    }
+    handleSave(headline, description){
+        const newTasks = this.state.tasks;
+        var newtask={
+            'id':this.state.tasks.length+1,
+            'subject':headline,
+            'body':description
+        };
+        newTasks.push(newtask);
+        this.setState({
+            tasks:newTasks
+        })
+        this.state.currentPosition=this.state.tasks.length-3;
     }
 }

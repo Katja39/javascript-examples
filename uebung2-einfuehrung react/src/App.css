@@ -1,38 +1,77 @@
-.App {
+.application {
   text-align: center;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.header {
+  color: white;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.row {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  flex-direction: row;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-left: 3%;
+  margin-right: 3%;
+}
+.column {
+  flex-direction: column;
+  margin: 2%;
+  width: 25%;
+  height: 100%;
+  background-color: rgb(245, 245, 170);
+  box-shadow: 0 5px 14px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.15);
+}
+.column p,
+.column h1 {
+  margin: 20px;
+}
+.column h1 {
+  height: 30%;
+}
+.column p {
+  height: 30%;
+}
+.numberOfTasks {
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+button {
+  font-weight: bold;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 10px;
+  background-color: rgb(245, 245, 170);
+  border: none;
+  color: rgb(46, 46, 46);
+  padding: 10px 20px;
+  box-shadow: 0 5px 10px 0 rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.15);
+  transition-duration: 0.6s;
+}
+button:hover {
+  background-color: rgb(55, 147, 233);
+  color: white;
+}
+.column button {
+  background-color: rgb(55, 147, 233);
+  color: white;
+}
+.column button:hover {
+  background-color: rgb(245, 245, 170);
+  color: rgb(46, 46, 46);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/*addTask*/
+.column input[type="text"] {
+  width: 80%;
+  text-align: center;
+  margin: 5%;
+  overflow: hidden;
+  font-size: 15px;
+}
+.column textarea {
+  padding: 2%;
+  width: 75%;
+  height: 25%;
+  margin: 5%;
+  resize: none;
+  font-family: helvetica;
+  font-size: 15px;
 }
